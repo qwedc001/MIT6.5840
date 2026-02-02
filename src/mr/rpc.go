@@ -21,3 +21,39 @@ type ExampleReply struct {
 
 // Add your RPC definitions here.
 
+const (
+	MapTask = "map"
+	ReduceTask = "reduce"
+	ExitTask = "exit"
+	WaitTask = "wait"
+)
+
+const (
+	Idle = "idle"
+	InProgress = "in-progress"
+	Completed = "completed"
+)
+
+type ApplyJobArgs struct {
+	WorkerID int
+}
+
+type ApplyJobReply struct {
+	TaskID int
+	TaskType string
+	Filename string
+	MapTaskNum int
+	ReduceTaskNum int
+	NReduce int
+}
+
+type ReportJobArgs struct {
+	WorkerID int
+	TaskID int
+	TaskType string
+	Status string
+}
+
+type ReportJobReply struct {
+	ACK bool
+}
